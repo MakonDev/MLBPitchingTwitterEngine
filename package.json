@@ -1,0 +1,33 @@
+{
+  "name": "mlbpitchingtwitterengine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "build": "rm -rf build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MakonDev/MLBPitchingTwitterEngine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MakonDev/MLBPitchingTwitterEngine/issues"
+  },
+  "homepage": "https://github.com/MakonDev/MLBPitchingTwitterEngine#readme",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.13",
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "twitter-api-v2": "^1.11.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
