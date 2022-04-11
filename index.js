@@ -29,7 +29,11 @@ app.get("/api/twitterCounts", async (req, res) => {
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
 
-    const response = await appOnlyClient.v2.tweetCountRecent("yankees")
+    const setDate = req.query.date + "T00:00:00Z"
+
+    const twitterQuery = '(' + req.query.name + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count") is:verified'
+
+    const response = await appOnlyClient.v2.tweetCountRecent(twitterQuery)
 
     const resp = response.meta.total_tweet_count.toString() + req.query.date + req.query.name
     res.json({ message: resp});
