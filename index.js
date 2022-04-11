@@ -36,7 +36,7 @@ app.get("/api/twitterCounts", async (req, res) => {
     const response = await appOnlyClient.v2.tweetCountRecent(twitterQuery, {start_time: setDate})
 
     const averageTweets = response.meta.total_tweet_count/response.data.length
-    const recentHourTweets = response.data.pop()
+    const recentHourTweets = response.data[response.data.length-1]
 
     res.json({ 
       message: averageTweets.toString() + " " + recentHourTweets.tweet_count, 
