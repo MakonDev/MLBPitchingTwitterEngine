@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { response } = require('express');
+const http = require('http');
+const url = require('url');
 const express = require("express");
 const { TwitterApi } = require('twitter-api-v2');
 const PORT = process.env.PORT || 3001;
@@ -30,7 +31,7 @@ app.get("/api/twitterCounts", async (req, res) => {
 
     const response = await appOnlyClient.v2.tweetCountRecent("yankees")
 
-    const resp = response.meta.total_tweet_count.toString() + req.date + req.name
+    const resp = response.meta.total_tweet_count.toString() + req.query.date + req.query.name
     res.json({ message: resp});
   } catch (e) {
     console.log(e)

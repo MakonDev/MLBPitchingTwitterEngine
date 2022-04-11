@@ -24,7 +24,9 @@
     "@types/express": "^4.17.13",
     "axios": "^0.26.1",
     "express": "^4.17.3",
-    "twitter-api-v2": "^1.11.3"
+    "http": "^0.0.1-security",
+    "twitter-api-v2": "^1.11.3",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
