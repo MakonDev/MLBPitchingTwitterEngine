@@ -29,7 +29,7 @@ app.get("/api/twitterCounts", async (req, res) => {
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
 
-    const setDate = req.query.date + "T00:00:00Z"
+    const setDate = req.query.date + "T12:00:00Z"
 
     const twitterQuery = '(' + req.query.name + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count") is:verified'
 
