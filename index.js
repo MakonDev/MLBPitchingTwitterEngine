@@ -31,7 +31,10 @@ app.get("/api/twitterCounts", async (req, res) => {
 
     const setDate = req.query.date + "T12:00:00Z"
 
-    const twitterQuery = '(' + req.query.name + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count") is:verified'
+    const twitterQuery = 
+    '((' + req.query.name + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count") OR '+ 
+    '(' + req.query.team + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count")) ' +
+    'is:verified'
 
     const response = await appOnlyClient.v2.tweetCountRecent(twitterQuery, {start_time: setDate})
 
@@ -39,7 +42,7 @@ app.get("/api/twitterCounts", async (req, res) => {
     const recentHourTweets = response.data[response.data.length-1]
 
     res.json({ 
-      message: averageTweets.toString() + " " + recentHourTweets.tweet_count, 
+      message: twitterQuery, 
       data: {data: response.data, recentHourTweets: recentHourTweets.tweet_count, averageTweets: averageTweets }});
   } catch (e) {
     console.log(e)
