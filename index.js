@@ -33,10 +33,10 @@ app.get("/api/twitterCounts", async (req, res) => {
 
     const twitterQuery = '(' + req.query.name + ') (bullpen OR warming OR "getting loose" OR stretching OR "started throwing" OR "done for the day" OR pitches OR "pitch count") is:verified'
 
-    const response = await appOnlyClient.v2.tweetCountRecent(twitterQuery)
+    const response = await appOnlyClient.v2.tweetCountRecent(twitterQuery, {start_time: setDate})
 
     const resp = response.meta.total_tweet_count.toString() + req.query.date + req.query.name
-    res.json({ message: resp});
+    res.json({ message: resp, data: response.data});
   } catch (e) {
     console.log(e)
     res.json({ message: "Hello from Express"});
