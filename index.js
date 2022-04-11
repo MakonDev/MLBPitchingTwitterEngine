@@ -15,6 +15,10 @@ const config = {
 const appOnlyClient = new TwitterApi(process.env.TWITTER_BEARER_TOKEN);
 
 app.get("/api", async (req, res) => {
+  res.json({ message: "Hello from Express"});
+});
+
+app.get("/api/twitterCounts", async (req, res) => {
   try {
     res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -23,9 +27,11 @@ app.get("/api", async (req, res) => {
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
+
     const response = await appOnlyClient.v2.tweetCountRecent("yankees")
 
-    res.json({ message: response.meta.total_tweet_count});
+    const resp = response.meta.total_tweet_count.toString() + req.date + req.name
+    res.json({ message: resp});
   } catch (e) {
     console.log(e)
     res.json({ message: "Hello from Express"});
