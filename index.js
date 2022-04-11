@@ -42,7 +42,7 @@ app.get("/api/twitterCounts", async (req, res) => {
     const recentHourTweets = response.data[response.data.length-1]
 
     res.json({ 
-      message: twitterQuery, 
+      message: "Twitter request sent", 
       data: {data: response.data, recentHourTweets: recentHourTweets.tweet_count, averageTweets: averageTweets }});
   } catch (e) {
     console.log(e)
